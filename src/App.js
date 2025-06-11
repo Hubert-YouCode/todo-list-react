@@ -37,12 +37,23 @@ function App() {
             })))
         };
 
+    const addNewTask = (content) => {
+        setTasks(tasks => [
+            ...tasks, 
+            {
+                content,
+                done: false,
+                id: tasks.length === 0 ? 1 : tasks[tasks.length -1].id + 1,
+            },
+        ]);
+    };
+
     return (
         <Container>
             <Header title="Lista zadań" />
             <Section
                 title="Dodaj nowe zadanie"
-                body={<Form />}
+                body={<Form addNewTask={addNewTask} />}
             />
             <Section
                 title="Lista zadań"
@@ -52,6 +63,7 @@ function App() {
                         hideDone={hideDone}
                         removeTask={removeTask}
                         toggleTaskDone={toggleTaskDone}
+                        
                     />
                 }
                 extraHeaderContent={
