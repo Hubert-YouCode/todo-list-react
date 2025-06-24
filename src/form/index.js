@@ -1,11 +1,13 @@
 import { useState } from "react";
 import "./style.css";
-import { eventWrapper } from "@testing-library/user-event/dist/utils";
 
 const Form = ({addNewTask}) => {
     const [newTaskContent, setNewTaskContent] = useState("")
     const onFormSubmit = (event) => {
         event.preventDefault();
+        if(newTaskContent.trim() === ""){
+            return;
+        }
         addNewTask(newTaskContent.trim());
         setNewTaskContent("");
     };

@@ -13,9 +13,12 @@ function App() {
         { id: 1, content: "Rozwiesić pranie", done: false },
         { id: 2, content: "Zjeść obiad", done: true },
     ]);
+
+
     const toggleHideDone = () => {
         setHideDone(hideDone => !hideDone)
     };
+
     const removeTask = (id) => {
         setTasks(tasks => tasks.filter(task => task.id !== id));
     };
@@ -26,24 +29,23 @@ function App() {
                 return { ...task, done: !task.done };
             }
             return task;
-
         }))
     };
 
     const setTasksDone = () => {
         setTasks(tasks => tasks.map(task => ({
             ...task,
-             done: true,
-            })))
-        };
+            done: true,
+        })))
+    };
 
     const addNewTask = (content) => {
         setTasks(tasks => [
-            ...tasks, 
+            ...tasks,
             {
                 content,
                 done: false,
-                id: tasks.length === 0 ? 1 : tasks[tasks.length -1].id + 1,
+                id: tasks.length === 0 ? 1 : tasks[tasks.length - 1].id + 1,
             },
         ]);
     };
@@ -63,7 +65,6 @@ function App() {
                         hideDone={hideDone}
                         removeTask={removeTask}
                         toggleTaskDone={toggleTaskDone}
-                        
                     />
                 }
                 extraHeaderContent={
